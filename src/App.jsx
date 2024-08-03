@@ -10,5 +10,4 @@ const App = () => {
   );
 };
 
-e
 export default App;
