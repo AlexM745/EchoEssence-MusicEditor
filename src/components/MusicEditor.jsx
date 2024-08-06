@@ -1,11 +1,13 @@
-import { useEffect, useRef } from "react";
-import { Renderer, Stave, StaveNote, Voice, Formatter } from "vexflow";
+import React, { useEffect, useRef, useState } from 'react';
+import { Renderer, Stave, StaveNote, Voice, Formatter } from 'vexflow';
+import WebMidi from 'webmidi';
 import * as Tone from 'tone';
 import { Vex } from "vexflow";
 
 const MusicEditor = () => {
 
     const containerRef = useRef(null);
+  const [notes, setNotes] = useState([]);
 
     useEffect(() => {
         const VF = Vex.Flow;
