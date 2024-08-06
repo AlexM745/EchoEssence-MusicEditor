@@ -37,8 +37,13 @@ const MusicEditor = () => {
         voice.draw(context, stave);
     }, []);
 
-    return <div ref={containerRef}></div>;
-};
+    return (
+    <main >
+    
+    <div ref={containerRef}></div>
+    </main>
+
+)};
 
 
 
