@@ -23,6 +23,8 @@ const MusicEditor = () => {
         stave.addClef('treble').addTimeSignature('4/4');
         stave.setContext(context).draw();
 
+        // if there are notes then create the voice
+        if (notes.length > 0){
         //  This is the number of notes and value in each measure
         const voice = new VF.Voice({ num_beats: 4, beat_value: 4 });
         voice.addTickables(notes);
@@ -30,6 +32,7 @@ const MusicEditor = () => {
         new VF.Formatter().joinVoices([voice]).format([voice], 400);
 
         voice.draw(context, stave);
+        }
 
         // Setup WebMidi
         WebMidi.enable((err) => {
@@ -55,6 +58,8 @@ const MusicEditor = () => {
             keys: [note],
             duration: 'q',
         })]);
+        // for the new notes
+        setNotes(prevNotes => [...prevNotes, newNote]);
 
         playNote(note);
     };
