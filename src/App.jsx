@@ -10,7 +10,7 @@ const App = () => {
       <div >
         <Navbar />
       </div>
-      <div className='m-2 p-2 z-3'>
+      <div className='pt-10 mt-10 flex justify-center'>
       <MusicEditor />
       </div>
     </div>
