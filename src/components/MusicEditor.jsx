@@ -10,7 +10,7 @@ const MusicEditor = () => {
     const containerRef = useRef(null);
     const [notes, setNotes] = useState([]);
     const [context, setContext] = useState(null);
-    const [stave, setStave] = useState(null);
+    const [staves, setStaves] = useState(null);
 
 
     useEffect(() => {
@@ -25,13 +25,25 @@ const MusicEditor = () => {
         const context = renderer.getContext();
         context.setFont('Arial', 10, '').setBackgroundFillStyle('#eed');
 
-        // This is the treble clef and 4/4 time signature.
-        const stave = new VF.Stave(10, 40, 400);
-        stave.addClef('treble').addTimeSignature('4/4');
-        stave.setContext(context).draw();
-
+        // This is for various staves
+        const newStaves = [];
+        staves.forEach((_, index) => {
+            const stave = new VF.Stave(10 + 500 * index, 40, 400); // Adjust x position based on index
+            stave.addClef('treble').addTimeSignature('4/4');
+            stave.setContext(context).draw();
+            newStaves.push(stave);
+    
+            if (notes[index] && notes[index].length > 0) {
+                const voice = new VF.Voice({ num_beats: 4, beat_value: 4 });
+                voice.addTickables(notes[index]);
+    
+                new VF.Formatter().joinVoices([voice]).format([voice], 400);
+                voice.draw(context, stave);
+            }
+        });
+    
         setContext(context);
-        setStave(stave);
+        setStaves(newStaves);
 
         // if there are notes then create the voice
         if (notes.length > 0) {
@@ -96,9 +108,6 @@ const MusicEditor = () => {
 
     // this is so that the notes are played with tone.js
     const playNote = (noteNumber) => {
-
-        console.log(`Received note: ${noteNumber}`);
-
         const synth = new Tone.Synth().toDestination();
         const pitch = midiNoteToPitch[noteNumber];
 
