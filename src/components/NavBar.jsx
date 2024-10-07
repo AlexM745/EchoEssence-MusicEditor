@@ -47,7 +47,8 @@ const Navbar = () => {
                 {/* Navigation links*/}
 
                 <ul className='list-none hidden sm:flex flex-row gap-10'>
-                    <li>Ear Training</li>
+                    <li>Circle of 5th</li>
+                    <li>Sight Reading</li>
                 </ul>
 
                 {/* Menu */}
@@ -62,9 +63,10 @@ const Navbar = () => {
                     <div
                         className={`${!toggle ? "hidden" : "flex"} p-6 bg-red-600 absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl`}
                     >
-                        {/* This are the navigation list with links that scroll to desired section. */}
+                        {/* This are the navigation list with links that scroll to desired page. */}
                         <ul className='list-none flex justify-end items-start flex-1 flex-col gap-4'>
-                            <li>Ear Training</li>
+                            <li>Circle of 5th</li>
+                            <li>Sight Reading</li>
                         </ul>
                     </div>
                 </div>

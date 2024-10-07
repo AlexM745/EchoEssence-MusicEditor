@@ -10,7 +10,7 @@ const MusicEditor = () => {
     const containerRef = useRef(null);
     const [notes, setNotes] = useState([]);
     const [context, setContext] = useState(null);
-    const [staves, setStaves] = useState(null);
+    const [staves, setStaves] = useState([]);
 
 
     useEffect(() => {
